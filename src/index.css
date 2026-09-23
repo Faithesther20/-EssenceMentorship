@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'DM Serif Display', 'Cormorant Garamond', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  --color-deep-navy: #0A1425;
+  --color-midnight: #07101C;
+  --color-essence-blue: #2768D8;
+  --color-accent-blue: #4D91FF;
+  --color-warm-white: #FAF9F6;
+  --color-paper: #F4F1EA;
+  --color-soft-grey: #E7EAF0;
+  --color-slate-text: #657184;
+  --color-dark-text: #111827;
+  --color-subtle-gold: #B99A5B;
+  
+  /* Retain backward-compatible references */
+  --color-navy: #0A1425;
+  --color-legal-blue: #2768D8;
+  --color-ice-blue: #EFF6FF;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+/* Custom scrollbar for clean aesthetics */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #07101C;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Subtle editorial hair lines and reading rhythm */
+.editorial-rule {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.editorial-rule-light {
+  height: 1px;
+  background-color: rgba(17, 24, 39, 0.1);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
