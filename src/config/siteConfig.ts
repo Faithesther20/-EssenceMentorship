@@ -1,26 +1,43 @@
 /**
  * Central Configuration for Essence Mentorship
- * All key URLs, prices, and contact details are centralized here.
+ * All key URLs, contact details, and payment constants are centralized here.
  */
 
+import {
+  PAYMENT_BANK,
+  PAYMENT_ACCOUNT_NUMBER,
+  PAYMENT_ACCOUNT_NAME,
+  PAYMENT_WHATSAPP_NUMBER,
+  PAYMENT_WHATSAPP_RAW,
+  PROGRAMMES,
+  ProgrammeId,
+  Programme,
+  getPaymentProofWhatsAppUrl,
+  getProgrammeEnquiryWhatsAppUrl,
+} from "../data/programmes";
+
+export {
+  PAYMENT_BANK,
+  PAYMENT_ACCOUNT_NUMBER,
+  PAYMENT_ACCOUNT_NAME,
+  PAYMENT_WHATSAPP_NUMBER,
+  PAYMENT_WHATSAPP_RAW,
+  PROGRAMMES,
+  getPaymentProofWhatsAppUrl,
+  getProgrammeEnquiryWhatsAppUrl,
+};
+export type { ProgrammeId, Programme };
+
 export const BRAND_NAME = "Essence Mentorship";
-export const BRAND_TAGLINE = "Structured Mentorship & Academic Support for Nigerian Law School Students";
+export const BRAND_TAGLINE =
+  "Structured Legal Education & Mentorship for Pre-Law School, Bar Part I & Bar Part II Students";
 
-// Flagship Offer Price
-export const PROGRAMME_PRICE = "₦200,000";
-export const PROGRAMME_PRICE_RAW = 200000;
-export const PROGRAMME_CURRENCY = "NGN";
+// Official WhatsApp
+export const WHATSAPP_NUMBER = PAYMENT_WHATSAPP_NUMBER;
+export const WHATSAPP_RAW_NUMBER = PAYMENT_WHATSAPP_RAW;
 
-// Primary Conversion Goal - Paystack Enrollment URL
-// Replace with the live Paystack Payment Page URL provided by the administrator
-export const PAYSTACK_ENROLLMENT_URL = "https://paystack.com/pay/essence-mentorship-nls";
-
-// Secondary Conversion Goal - WhatsApp
-export const WHATSAPP_NUMBER = "+2348113853838";
-export const WHATSAPP_RAW_NUMBER = "2348113853838";
-
-export const WHATSAPP_ENQUIRY_MESSAGE = 
-  "Hello Essence Mentorship, I am interested in the ₦200,000 Nigerian Law School mentorship bundle and would like to make an enquiry.";
+export const WHATSAPP_ENQUIRY_MESSAGE =
+  "Hello Essence Mentorship, I would like to enquire about your programmes.";
 
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_RAW_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_ENQUIRY_MESSAGE
@@ -48,7 +65,7 @@ export const SOCIAL_LINKS = {
 /**
  * Analytics tracking dispatcher for conversion funnels
  */
-export type AnalyticsEvent = 
+export type AnalyticsEvent =
   | "hero_enroll"
   | "navbar_enroll"
   | "pricing_enroll"
@@ -59,16 +76,25 @@ export type AnalyticsEvent =
   | "testimonial_view"
   | "programme_view"
   | "faq_view"
-  | "contact_submit";
+  | "contact_submit"
+  | "copy_account_number"
+  | "send_payment_proof";
 
-export const trackAnalyticsEvent = (event: AnalyticsEvent, payload?: Record<string, unknown>) => {
+export const trackAnalyticsEvent = (
+  event: AnalyticsEvent,
+  payload?: Record<string, unknown>
+) => {
   if (typeof window !== "undefined") {
-    // Dispatches to custom event and window dataLayer if configured
     const win = window as any;
     if (win.dataLayer) {
-      win.dataLayer.push({ event, ...payload, timestamp: new Date().toISOString() });
+      win.dataLayer.push({
+        event,
+        ...payload,
+        timestamp: new Date().toISOString(),
+      });
     }
-    // Also dispatch DOM event for any embedded pixel listeners
-    window.dispatchEvent(new CustomEvent("essence_track", { detail: { event, ...payload } }));
+    window.dispatchEvent(
+      new CustomEvent("essence_track", { detail: { event, ...payload } })
+    );
   }
 };

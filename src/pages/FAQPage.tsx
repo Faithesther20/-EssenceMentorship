@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, ChevronDown, ArrowRight, MessageCircle } from "lucide-react";
 import { FAQS } from "../data/faqs";
-import { PROGRAMME_PRICE, WHATSAPP_URL, WHATSAPP_NUMBER } from "../config/siteConfig";
+import { WHATSAPP_URL, WHATSAPP_NUMBER } from "../config/siteConfig";
 import { WhatsAppButton } from "../components/WhatsAppButton";
 
 interface FAQPageProps {
@@ -11,7 +11,7 @@ interface FAQPageProps {
 export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [expandedId, setExpandedId] = useState<string | null>("faq-1");
+  const [expandedId, setExpandedId] = useState<string | null>("faq-programmes");
 
   const categories = ["All", "Programme", "Enrollment & Payment", "Campus & Access"];
 
@@ -40,7 +40,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
             Frequently Asked Questions
           </h1>
           <p className="text-sm sm:text-base text-[#CBD5E1] font-sans max-w-xl mx-auto">
-            Everything you need to know about the 5-course mentorship bundle, session schedules, and campus coverage.
+            Everything you need to know about our three training programmes, OPay bank transfer payments, and WhatsApp onboarding.
           </p>
         </section>
 
@@ -50,7 +50,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
             <Search className="w-4 h-4 text-[#94A3B8] absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search by topic, campus, drafting, or payment..."
+              placeholder="Search by programme, price, OPay transfer, or campus..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-[#07101C] border border-slate-800 rounded-xl pl-11 pr-4 py-3.5 text-xs sm:text-sm text-white placeholder:text-[#64748B] focus:outline-none focus:border-[#4D91FF] transition-colors"
@@ -61,6 +61,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
             {categories.map((cat) => (
               <button
                 key={cat}
+                type="button"
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   activeCategory === cat
@@ -89,6 +90,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
                   className="rounded-xl bg-[#07101C] border border-slate-800 overflow-hidden transition-colors"
                 >
                   <button
+                    type="button"
                     onClick={() => setExpandedId(isOpen ? null : faq.id)}
                     className="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer"
                   >
@@ -103,7 +105,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-sans border-t border-slate-800">
+                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#CBD5E1] leading-relaxed font-sans border-t border-slate-800 whitespace-pre-line">
                       <p>{faq.answer}</p>
                     </div>
                   )}
@@ -117,7 +119,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onEnroll }) => {
         <div className="p-6 sm:p-8 rounded-2xl bg-[#07101C] border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <h4 className="font-serif-display text-lg font-bold text-white">
-              Still have a specific question about your campus?
+              Still have a specific question about your programme?
             </h4>
             <p className="text-xs text-[#CBD5E1] font-sans mt-0.5">
               Speak directly with our team on WhatsApp at {WHATSAPP_NUMBER}.

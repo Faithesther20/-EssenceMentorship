@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { ShieldCheck, MessageCircle, Mail, MapPin, ExternalLink } from "lucide-react";
+import { ShieldCheck, MessageCircle, Mail, MapPin } from "lucide-react";
 import { Logo } from "./Logo";
-import { WHATSAPP_URL, WHATSAPP_NUMBER, CONTACT_EMAIL, PROGRAMME_PRICE, trackAnalyticsEvent } from "../config/siteConfig";
+import {
+  WHATSAPP_URL,
+  WHATSAPP_NUMBER,
+  CONTACT_EMAIL,
+  PAYMENT_BANK,
+  PAYMENT_ACCOUNT_NUMBER,
+  trackAnalyticsEvent,
+} from "../config/siteConfig";
 import { NavPage } from "./Navbar";
 
 interface FooterProps {
@@ -24,12 +31,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
           <div className="lg:col-span-2 space-y-5">
             <Logo size="md" variant="light" withTagline={true} />
             <p className="text-sm text-[#CBD5E1] leading-relaxed max-w-sm">
-              Structured mentorship, academic guidance, and drafting mastery for Nigerian Law School students preparing for Bar Finals.
+              Structured legal education and mentorship for Pre-Law School, Bar Part I, and Bar Part II students.
             </p>
 
             <div className="pt-2 flex items-center gap-2.5 text-xs text-[#94A3B8]">
               <ShieldCheck className="w-4 h-4 text-[#4D91FF] shrink-0" />
-              <span>Direct, secure enrollment powered by Paystack</span>
+              <span>Official Bank Transfer via {PAYMENT_BANK} · WhatsApp Verification</span>
             </div>
 
             <div className="space-y-2 text-xs text-[#CBD5E1] pt-1">
@@ -50,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
 
           {/* Col 3: Navigation */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4">
+            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4 font-mono">
               Navigation
             </h4>
             <ul className="space-y-2.5 text-sm text-[#CBD5E1]">
@@ -67,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
                   onClick={() => onNavigate("programme")}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  The Programme
+                  Programmes
                 </button>
               </li>
               <li>
@@ -91,7 +98,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
                   onClick={() => onNavigate("faq")}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  FAQs
+                  Frequently Asked Questions
                 </button>
               </li>
               <li>
@@ -99,51 +106,74 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
                   onClick={() => onNavigate("contact")}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Contact & Enquiries
+                  Contact & Inquiries
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Core Courses */}
+          {/* Col 4: Programmes */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4">
-              5 Core Courses
+            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4 font-mono">
+              Programmes
             </h4>
             <ul className="space-y-2.5 text-sm text-[#CBD5E1]">
-              <li>01. Criminal Litigation</li>
-              <li>02. Civil Litigation</li>
-              <li>03. Corporate Law Practice</li>
-              <li>04. Property Law Practice</li>
-              <li>05. Professional Ethics & Skills</li>
+              <li>
+                <button
+                  onClick={onEnroll}
+                  className="hover:text-white transition-colors cursor-pointer text-left flex flex-col"
+                >
+                  <span className="font-medium text-white">Bar Part I</span>
+                  <span className="text-xs text-[#B99A5B] font-mono">₦300,000 · 7 Courses</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={onEnroll}
+                  className="hover:text-white transition-colors cursor-pointer text-left flex flex-col"
+                >
+                  <span className="font-medium text-white">Bar Part II</span>
+                  <span className="text-xs text-[#B99A5B] font-mono">₦300,000 · 5 Courses</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={onEnroll}
+                  className="hover:text-white transition-colors cursor-pointer text-left flex flex-col"
+                >
+                  <span className="font-medium text-white">Pre-Law School</span>
+                  <span className="text-xs text-[#B99A5B] font-mono">₦150,000 · Preparation</span>
+                </button>
+              </li>
             </ul>
           </div>
 
-          {/* Col 5: Offer & Action */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4">
-              Flagship Offer
+          {/* Col 5: Direct Action */}
+          <div className="space-y-4">
+            <h4 className="text-xs uppercase tracking-widest text-white font-semibold mb-4 font-mono">
+              Enrollment
             </h4>
-            <div className="p-5 rounded-xl bg-[#0A1425] border border-slate-800 space-y-3">
-              <span className="text-xs text-[#94A3B8] block">Complete 5-Course Mentorship</span>
-              <div className="text-xl font-bold text-white font-sans">{PROGRAMME_PRICE}</div>
-              <button
-                onClick={onEnroll}
-                className="w-full py-2.5 px-3 text-center text-xs font-semibold uppercase tracking-wider text-white bg-[#2768D8] hover:bg-[#1E56B5] rounded-xl transition-colors cursor-pointer"
-              >
-                Enroll Now
-              </button>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleWhatsApp}
-                className="w-full inline-flex items-center justify-center gap-1.5 text-xs text-[#CBD5E1] hover:text-white pt-1"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Ask via WhatsApp</span>
-              </a>
-            </div>
+            <p className="text-xs text-[#CBD5E1] leading-relaxed">
+              Official payment is by direct bank transfer to {PAYMENT_BANK} ({PAYMENT_ACCOUNT_NUMBER}).
+            </p>
+
+            <button
+              onClick={onEnroll}
+              className="w-full py-3 px-4 bg-[#2768D8] hover:bg-[#1E56B5] text-white text-xs font-semibold uppercase tracking-wider rounded-xl transition-colors cursor-pointer text-center block"
+            >
+              ENROLL NOW
+            </button>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleWhatsApp}
+              className="w-full py-2.5 px-4 bg-[#0A1425] hover:bg-slate-800 text-[#CBD5E1] hover:text-white text-xs font-semibold rounded-xl border border-slate-800 transition-colors inline-flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>Ask on WhatsApp</span>
+            </a>
           </div>
         </div>
 
@@ -164,15 +194,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
             >
               Privacy Policy
             </button>
-            <a
-              href="https://paystack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#94A3B8] hover:text-white"
-            >
-              <span>Paystack Secured</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <span className="text-[#94A3B8]">
+              Official Bank: {PAYMENT_BANK} ({PAYMENT_ACCOUNT_NUMBER})
+            </span>
           </div>
         </div>
       </div>
@@ -187,7 +211,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
               </h3>
               <button
                 onClick={() => setActiveModal(null)}
-                className="text-slate-400 hover:text-white p-1 rounded-md"
+                className="text-slate-400 hover:text-white p-1 rounded-md cursor-pointer"
               >
                 ✕
               </button>
@@ -196,22 +220,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
               {activeModal === "terms" ? (
                 <>
                   <p>
-                    <strong>1. Educational Guidance Scope:</strong> Essence Mentorship provides structured academic support, drafting tutorials, and study guidance designed for Nigerian Law School candidates. Our mentorship is supplementary and does not replace official Council of Legal Education directives or campus lectures.
+                    <strong>1. Educational Guidance Scope:</strong> Essence Mentorship provides structured legal training, academic guidance, and drafting tutorials designed for Pre-Law School, Bar Part I, and Bar Part II candidates. Our mentorship is supplementary and does not replace official Council of Legal Education directives or university/campus lectures.
                   </p>
                   <p>
                     <strong>2. Code of Integrity:</strong> All templates, study summaries, and recorded sessions provided through the programme remain intellectual property of Essence Mentorship and are licensed solely for the personal academic use of enrolled students.
                   </p>
                   <p>
-                    <strong>3. Professional Ethics:</strong> In alignment with the Rules of Professional Conduct (RPC 2023), students are held to professional standards of conduct in all peer discussions and mentorship interactions.
+                    <strong>3. Professional Ethics:</strong> In alignment with legal standards and the Rules of Professional Conduct (RPC 2023), students are held to professional standards of conduct in all peer discussions and mentorship interactions.
                   </p>
                 </>
               ) : (
                 <>
                   <p>
-                    <strong>1. Information Collection:</strong> Essence Mentorship collects student details (name, email address, phone number, and Nigerian Law School campus) solely for the administration of mentorship, cohort communication, and payment verification.
+                    <strong>1. Information Collection:</strong> Essence Mentorship collects student details (name, email address, phone number, and stage/campus) solely for the administration of mentorship, cohort communication, and payment verification.
                   </p>
                   <p>
-                    <strong>2. Payment Data:</strong> All payments are processed directly through Paystack. Essence Mentorship never stores, handles, or accesses student payment card details or banking credentials.
+                    <strong>2. Payment Verification:</strong> All payments are made by direct bank transfer to our official {PAYMENT_BANK} account and confirmed via our official WhatsApp channel (+2348113853838). Essence Mentorship never asks for your card PIN, OTP, or online banking passwords.
                   </p>
                 </>
               )}
@@ -219,7 +243,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onEnroll }) => {
             <div className="pt-3 border-t border-slate-800 flex justify-end">
               <button
                 onClick={() => setActiveModal(null)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold"
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold cursor-pointer"
               >
                 Close
               </button>

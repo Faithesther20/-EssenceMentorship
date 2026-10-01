@@ -3,7 +3,14 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { Logo } from "./Logo";
 import { WHATSAPP_URL, trackAnalyticsEvent } from "../config/siteConfig";
 
-export type NavPage = "home" | "programme" | "about" | "testimonials" | "faq" | "enroll" | "contact";
+export type NavPage =
+  | "home"
+  | "programme"
+  | "about"
+  | "testimonials"
+  | "faq"
+  | "enroll"
+  | "contact";
 
 interface NavbarProps {
   currentPage: NavPage;
@@ -29,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks: { id: NavPage; label: string }[] = [
     { id: "home", label: "Home" },
-    { id: "programme", label: "The Programme" },
+    { id: "programme", label: "Programmes" },
     { id: "about", label: "About" },
     { id: "testimonials", label: "Testimonials" },
     { id: "faq", label: "FAQ" },
@@ -62,16 +69,16 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
-          {/* ZONE 1: Brand Zone */}
+          {/* Brand Zone */}
           <button
             onClick={() => handleNavClick("home")}
-            className="flex items-center text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded p-1"
+            className="flex items-center text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded p-1 cursor-pointer"
             aria-label="Essence Mentorship - Return to Homepage"
           >
             <Logo size={isScrolled ? "sm" : "md"} variant="light" />
           </button>
 
-          {/* ZONE 2: Nav Links (Desktop) */}
+          {/* Desktop Nav Links */}
           <nav
             className="hidden md:flex items-center gap-7 text-sm"
             aria-label="Main Navigation"
@@ -90,14 +97,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#FAF9F6] rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#B99A5B] rounded-full" />
                   )}
                 </button>
               );
             })}
           </nav>
 
-          {/* ZONE 3: Action Pair (Desktop) */}
+          {/* Action Pair (Desktop) */}
           <div className="hidden lg:flex items-center gap-3">
             {/* WhatsApp secondary CTA */}
             <a
@@ -125,17 +132,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={handleEnroll}
-              className="px-3 py-1.5 text-xs font-bold text-white bg-[#2563EB] rounded-md shadow-sm"
+              className="px-3 py-1.5 text-xs font-bold text-white bg-[#2768D8] rounded-lg shadow-sm cursor-pointer"
             >
               ENROLL
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-300 hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="p-2 text-slate-300 hover:text-white rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -151,9 +162,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`text-left py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${
+                  className={`text-left py-2.5 px-3 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                     isActive
-                      ? "bg-blue-950/60 text-blue-200 font-semibold border-l-2 border-[#2563EB]"
+                      ? "bg-blue-950/60 text-blue-200 font-semibold border-l-2 border-[#2768D8]"
                       : "text-slate-300 hover:bg-slate-900 hover:text-white"
                   }`}
                 >
@@ -166,9 +177,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-3 border-t border-slate-800/80 space-y-2.5">
             <button
               onClick={handleEnroll}
-              className="w-full py-3 px-4 text-center text-sm font-bold tracking-wider uppercase text-white bg-[#2563EB] hover:bg-[#1D4ED8] rounded-lg shadow-md"
+              className="w-full py-3 px-4 text-center text-xs font-bold tracking-wider uppercase text-white bg-[#2768D8] hover:bg-[#1E56B5] rounded-xl shadow-md cursor-pointer"
             >
-              ENROLL NOW — ₦200,000
+              ENROLL NOW
             </button>
 
             <a
@@ -176,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleWhatsApp}
-              className="w-full py-2.5 px-4 inline-flex items-center justify-center gap-2 text-xs font-medium text-slate-200 bg-slate-900 border border-slate-800 rounded-lg hover:bg-slate-800"
+              className="w-full py-2.5 px-4 inline-flex items-center justify-center gap-2 text-xs font-medium text-slate-200 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800"
             >
               <MessageCircle className="w-4 h-4 text-emerald-400" />
               <span>Ask a Question on WhatsApp</span>

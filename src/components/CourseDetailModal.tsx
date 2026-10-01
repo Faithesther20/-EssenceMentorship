@@ -1,7 +1,6 @@
 import React from "react";
 import { X, CheckCircle2, FileText, Compass, AlertCircle } from "lucide-react";
 import { Course } from "../data/courses";
-import { PROGRAMME_PRICE } from "../config/siteConfig";
 
 interface CourseDetailModalProps {
   course: Course | null;
@@ -113,8 +112,8 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
         {/* Modal Action Footer */}
         <div className="sticky bottom-0 z-10 p-4 border-t border-slate-800 bg-[#0A1425] flex items-center justify-between gap-4">
           <div className="text-xs text-[#CBD5E1]">
-            <span>Part of the complete 5-course bundle: </span>
-            <strong className="text-white font-bold">{PROGRAMME_PRICE}</strong>
+            <span>Part of Bar Part II Programme: </span>
+            <strong className="text-white font-bold font-mono">₦300,000</strong>
           </div>
           <button
             onClick={() => {
@@ -123,7 +122,7 @@ export const CourseDetailModal: React.FC<CourseDetailModalProps> = ({
             }}
             className="px-5 py-2.5 rounded-xl bg-[#2768D8] hover:bg-[#1E56B5] text-white text-xs font-semibold uppercase tracking-wider shadow-md cursor-pointer transition-colors border border-blue-400/30"
           >
-            Enroll in Bundle
+            Enroll in Bar Part II
           </button>
         </div>
       </div>

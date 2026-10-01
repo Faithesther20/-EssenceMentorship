@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Play, MessageCircle, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import { TESTIMONIALS, Testimonial } from "../data/testimonials";
-import { PROGRAMME_PRICE } from "../config/siteConfig";
 import { VideoModal } from "../components/VideoModal";
 import { WhatsAppButton } from "../components/WhatsAppButton";
 
@@ -182,7 +181,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onEnroll }) 
               Start Your Preparation with Essence Mentorship
             </h3>
             <p className="text-xs sm:text-sm text-[#CBD5E1] font-sans">
-              Complete 5-course mentorship bundle for {PROGRAMME_PRICE}.
+              Structured preparation for Pre-Law School, Bar Part I, and Bar Part II students.
             </p>
           </div>
 
@@ -191,7 +190,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onEnroll }) 
               onClick={onEnroll}
               className="px-6 py-3.5 bg-[#2768D8] hover:bg-[#1E56B5] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors cursor-pointer flex items-center gap-2 border border-blue-400/30"
             >
-              <span>Enroll Now — {PROGRAMME_PRICE}</span>
+              <span>Enroll Now — View Programmes</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <WhatsAppButton label="Ask a Question" size="md" variant="outline" />

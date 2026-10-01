@@ -58,7 +58,7 @@ export const ContactPage: React.FC = () => {
   };
 
   const handleDirectWhatsAppWithDetails = () => {
-    const text = `Hello Essence Mentorship, my name is ${formData.fullName || "[Candidate]"} (${formData.campus}). I have an enquiry: ${formData.message || "I am interested in enrolling in the ₦200,000 Bar Finals mentorship bundle."}`;
+    const text = `Hello Essence Mentorship, my name is ${formData.fullName || "[Candidate]"} (${formData.campus}). I have an enquiry: ${formData.message || "I would like to enquire about your training programmes."}`;
     const url = `https://wa.me/2348113853838?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };

@@ -12,21 +12,24 @@ import { TestimonialsPage } from "./pages/TestimonialsPage";
 import { FAQPage } from "./pages/FAQPage";
 import { EnrollPage } from "./pages/EnrollPage";
 import { ContactPage } from "./pages/ContactPage";
+import { ProgrammeId } from "./data/programmes";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<NavPage>("home");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [targetProgrammeId, setTargetProgrammeId] = useState<ProgrammeId | null>(null);
 
-  // Handle URL hash routing or initial state if needed
+  // Handle URL hash routing or initial state
   useEffect(() => {
     const handleHash = () => {
-      const hash = window.location.hash.replace("#", "") as NavPage;
+      let hash = window.location.hash.replace("#", "") as string;
+      if (hash === "programmes") hash = "programme";
       if (
         ["home", "programme", "about", "testimonials", "faq", "enroll", "contact"].includes(
           hash
         )
       ) {
-        setCurrentPage(hash);
+        setCurrentPage(hash as NavPage);
       }
     };
 
@@ -40,7 +43,7 @@ export default function App() {
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentPage(page);
-      window.location.hash = page;
+      window.location.hash = page === "programme" ? "programmes" : page;
       window.scrollTo({ top: 0, behavior: "smooth" });
       setTimeout(() => {
         setIsTransitioning(false);
@@ -48,7 +51,10 @@ export default function App() {
     }, 150);
   };
 
-  const handleEnrollClick = () => {
+  const handleEnrollClick = (programmeId?: ProgrammeId) => {
+    if (programmeId) {
+      setTargetProgrammeId(programmeId);
+    }
     navigateTo("enroll");
   };
 
@@ -61,7 +67,7 @@ export default function App() {
       <Navbar
         currentPage={currentPage}
         onNavigate={navigateTo}
-        onEnrollClick={handleEnrollClick}
+        onEnrollClick={() => handleEnrollClick()}
       />
 
       {/* Main Content Area with elegant transition */}
@@ -91,7 +97,10 @@ export default function App() {
           <FAQPage onEnroll={handleEnrollClick} />
         )}
         {currentPage === "enroll" && (
-          <EnrollPage />
+          <EnrollPage
+            initialProgrammeId={targetProgrammeId}
+            onSelectProgramme={(id) => setTargetProgrammeId(id)}
+          />
         )}
         {currentPage === "contact" && (
           <ContactPage />
@@ -103,11 +112,11 @@ export default function App() {
 
       {/* Mobile Sticky Conversion Bar (hidden on desktop and on the checkout page) */}
       {currentPage !== "enroll" && (
-        <MobileStickyBar onEnroll={handleEnrollClick} />
+        <MobileStickyBar onEnroll={() => handleEnrollClick()} />
       )}
 
       {/* Dignified Legal Footer */}
-      <Footer onNavigate={navigateTo} onEnroll={handleEnrollClick} />
+      <Footer onNavigate={navigateTo} onEnroll={() => handleEnrollClick()} />
     </div>
   );
 }

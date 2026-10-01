@@ -1,7 +1,6 @@
 import React from "react";
 import { ArrowRight, Scale, BookOpen, Compass, ShieldCheck } from "lucide-react";
 import { MENTORS } from "../data/mentors";
-import { PROGRAMME_PRICE } from "../config/siteConfig";
 import { WhatsAppButton } from "../components/WhatsAppButton";
 import mentorTeachingImg from "../assets/images/mentor_teaching_students_1790158503154.jpg";
 
@@ -27,7 +26,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onEnroll }) => {
           </h1>
 
           <p className="text-base sm:text-lg text-[#CBD5E1] leading-relaxed font-sans">
-            Every year, thousands of capable Nigerian law graduates arrive at Law School with strong ambition, only to encounter an unprecedented volume of cases, statutory distinctions, and procedural drafting demands. Essence Mentorship was founded to bring structure, calm, and strategic methodology to that journey.
+            Every year, thousands of capable Nigerian law graduates and prospective students encounter an intense volume of doctrine, statutory distinctions, and procedural drafting demands. Essence Mentorship was founded to bring structure, calm, and strategic methodology across every stage—from Pre-Law School through Bar Part I and Bar Part II.
           </p>
         </section>
 
@@ -53,7 +52,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onEnroll }) => {
             </div>
 
             <p>
-              In Nigerian Law School, passing Bar Finals is less about reading 16 hours a day and far more about understanding exactly what examiners expect: precise statutory references (such as ACJA vs ACJL nuances, CAMA 2020 governance structures, or Land Use Act consent caveats) and flawless procedural drafting.
+              In Nigerian legal training, succeeding is less about reading 16 hours a day without direction and far more about understanding exactly what examiners expect: precise statutory references, issue spotting, and disciplined procedural drafting.
             </p>
 
             <p>
@@ -106,7 +105,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onEnroll }) => {
               Practicing Legal Minds Dedicated to Your Preparation
             </h2>
             <p className="text-sm text-[#CBD5E1] font-sans">
-              Experienced mentors guiding your preparation across the five courses.
+              Experienced mentors guiding your preparation across Pre-Law School, Bar Part I, and Bar Part II.
             </p>
           </div>
 
@@ -150,7 +149,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onEnroll }) => {
               Ready to Prepare with Structure and Guidance?
             </h3>
             <p className="text-xs sm:text-sm text-[#CBD5E1] font-sans max-w-xl">
-              Enroll in the complete 5-course mentorship bundle for {PROGRAMME_PRICE} or ask our team a question on WhatsApp.
+              Choose from our three training programmes (from ₦150,000) or ask our team a question on WhatsApp.
             </p>
           </div>
 
@@ -159,7 +158,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onEnroll }) => {
               onClick={onEnroll}
               className="px-6 py-3.5 bg-[#2768D8] hover:bg-[#1E56B5] text-white rounded-xl text-xs font-semibold uppercase tracking-wider shadow-md transition-colors cursor-pointer flex items-center gap-2 border border-blue-400/30"
             >
-              <span>Enroll Now — {PROGRAMME_PRICE}</span>
+              <span>Enroll Now — View Programmes</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
